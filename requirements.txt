@@ -1,0 +1,11 @@
+pandas
+numpy
+scikit-learn
+missingno
+matplotlib
+seaborn
+plotly
+joblib
+requests
+google-api-python-client
+pandas-profiling
