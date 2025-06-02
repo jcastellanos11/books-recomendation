@@ -23,3 +23,17 @@ def clean_users_csv(filepath, output_filepath=None):
         df.to_csv(output_filepath, index=False, sep=';')
     
     return df
+
+def clean_books_csv(filepath, output_filepath=None):
+    books = pd.read_csv(
+        filepath, sep=';', encoding='latin-1', on_bad_lines='warn', dtype=str
+    )
+    books = books.drop(columns=['Image-URL-S', 'Image-URL-M', 'Image-URL-L'], errors='ignore')
+    books = books.dropna(subset=['ISBN', 'Book-Title', 'Book-Author'])
+    books['Year-Of-Publication'] = pd.to_numeric(books['Year-Of-Publication'], errors='coerce').fillna(0).astype(int)
+    books = books.drop_duplicates(subset='ISBN')
+
+    if output_filepath:
+        books.to_csv(output_filepath, index=False, sep=';')
+    
+    return books
