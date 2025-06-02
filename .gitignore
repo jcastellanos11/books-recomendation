@@ -1,3 +1,10 @@
+# Entornos virtuales
 env/*
 books_data/*
 books_data.zip
+
+# Archivos de Python compilados
+AIL_Library/__pycache__/*
+*.pyc
+*.pyo
+*.pyd
