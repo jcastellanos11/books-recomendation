@@ -1,24 +1,29 @@
-import os
+import pandas as pd
+from .api_enricher import fetch_google_books_metadata  # Asegúrate de que esta función exista
+from .preprocessing import clean_users_csv
 
-from AIL_Library import preprocessing
-# AIL_Library/main.py
-# from AIL_Library import preprocessing, clustering, recommender
+
+def get_metadata(row):
+    meta = fetch_google_books_metadata(row['Book-Title'])
+    # Asegúrate de que meta sea un dict con las claves esperadas
+    categories = meta.get('categories', None)
+    language = meta.get('language', None)
+    return pd.Series([categories, language])
 
 if __name__ == '__main__':
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    users_path = os.path.join(BASE_DIR, 'books_data', 'users.csv')
-    clean_path = os.path.join(BASE_DIR, 'books_data', 'users.clean.csv')
+    input_file = "./AIL_Library/books_data/users.csv"
+    output_file = "./AIL_Library/books_data/clean_users.csv"
+    clean_users_csv(input_file, output_file)
+    print("Archivo CSV limpio creado:", output_file)
 
-    books_path = os.path.join(BASE_DIR, 'books_data', 'books.csv')
-    clean_books_path = os.path.join(BASE_DIR, 'books_data', 'books.clean.csv')
-
-    print("AIL Library main module is running.")
+    books_file = "./AIL_Library/books_data/books.csv"
 
 
-    preprocessing.clean_users_csv(users_path,clean_path)
 
-    print("Data loaded and cleaned successfully.")
-
-
-    preprocessing.clean_books_csv(books_path, clean_books_path)
-    print("Books data cleaned successfully.")
+    books_file = "./AIL_Library/books_data/books.csv"
+    books = pd.read_csv(books_file, sep=";", encoding="latin1", on_bad_lines='skip')
+    books[['categories', 'language']] = books.apply(get_metadata, axis=1)
+    
+    books = books.drop(columns=['Image-URL-S', 'Image-URL-M', 'Image-URL-L'])
+    books.to_csv('books_enriched.csv', index=False)
+    

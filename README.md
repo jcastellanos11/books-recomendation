@@ -10,13 +10,23 @@ Este proyecto implementa una librería modular en Python para recomendar libros 
 - `recommender`: generación de recomendaciones
 - `utils`: reportes y validaciones
 
-## Descargar Dataset books-data:
-https://www.kaggle.com/datasets/saurabhbagchi/books-dataset/data
-
-desarchivar en directorio: *books_data/*
-
 ## Cómo iniciar
 ```bash
 python AIL_Library/main.py
 ```
 
+project/
+├── AIL_Library/
+│   ├── __init__.py
+│   ├── preprocessing.py  # Cargar datos y limpieza básica
+│   ├── clustering.py     # KMeans jerárquico
+│   ├── api_enricher.py   # Enriquecimiento con APIs
+│   ├── recommender.py    # Sistema de recomendación
+│   ├── utils.py          # Reportes, logs y validaciones
+│   └── main.py           # Orquestador
+├── data/
+│   └── sample_users_books.json
+├── notebooks/
+│   └── exploration.ipynb
+├── requirements.txt
+└── README.md
