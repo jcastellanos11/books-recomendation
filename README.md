@@ -1,4 +1,3 @@
-# README.md
 # Sistema de Recomendación de Libros con Clusterización (K-Means)
 
 Este proyecto implementa una librería modular en Python para recomendar libros usando clustering jerárquico (K-Means dentro de K-Means). Ideal para plataformas de e-commerce de libros como "Relatos de Papel".
@@ -10,23 +9,32 @@ Este proyecto implementa una librería modular en Python para recomendar libros 
 - `recommender`: generación de recomendaciones
 - `utils`: reportes y validaciones
 
-## Cómo iniciar
+## Configuración del entorno virtual
+
+1. Abre una terminal en la raíz del proyecto.
+2. Crea el entorno virtual con:
+   ```bash
+   python3 -m venv .venv
+   ```
+3. Activa el entorno virtual:
+   ```bash
+   source .venv/bin/activate
+   ```
+4. Instala las dependencias necesarias (si tienes un archivo `requirements_clean.txt`):
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Ejecución del archivo principal
+
+Para ejecutar el archivo principal `AIL_Library/main.py`, usa uno de los siguientes comandos desde la raíz del proyecto:
+
+```bash
+python -m AIL_Library.main
+```
+o
+
 ```bash
 python AIL_Library/main.py
 ```
 
-project/
-├── AIL_Library/
-│   ├── __init__.py
-│   ├── preprocessing.py  # Cargar datos y limpieza básica
-│   ├── clustering.py     # KMeans jerárquico
-│   ├── api_enricher.py   # Enriquecimiento con APIs
-│   ├── recommender.py    # Sistema de recomendación
-│   ├── utils.py          # Reportes, logs y validaciones
-│   └── main.py           # Orquestador
-├── data/
-│   └── sample_users_books.json
-├── notebooks/
-│   └── exploration.ipynb
-├── requirements.txt
-└── README.md
