@@ -2,6 +2,7 @@
 env/*
 books_data/*
 books_data.zip
+AIL_Library/books_data/*
 
 # Archivos de Python compilados
 AIL_Library/__pycache__/*
