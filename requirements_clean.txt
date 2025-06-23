@@ -2,3 +2,7 @@ pandas
 scikit-learn
 requests
 numpy
+matplotlib
+seaborn
+gdown
+kneed
